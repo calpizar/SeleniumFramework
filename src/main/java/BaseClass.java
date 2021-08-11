@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.*;
-
 import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
@@ -17,12 +16,18 @@ public class BaseClass {
 
     @BeforeTest
     public void beforeTest(){
-        //System.out.println("*Esto corre una sola vez");
     }
+
+
     @Parameters({"browser"})
     @BeforeMethod
     public void beforeMethod(@Optional ("chrome") String browser){
-        //System.out.println("*Esto corre dos veces");
+
+        //MalformedException, InterruptedException
+        //DesiredCapabilities caps = DesiredCapabilities.chrome();
+        //String node = "http://localhost:4444/wd/hub";
+        //driver = new RemoteWebDriver(new URL(node), caps);
+
         switch (browser){
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
