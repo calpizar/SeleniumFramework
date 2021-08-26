@@ -1,0 +1,1 @@
+{"uuid":"dc77f9fa-5ed5-4f02-bf6a-53c16369be1c","name":"SeleniumFramework","children":["f37db9ec-edff-4186-8126-a114b8210057"],"befores":[{"name":"beforeTest","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1630031796432,"stop":1630031796459}],"afters":[],"links":[],"start":1630031796363,"stop":1630031836812}
