@@ -1,12 +1,11 @@
 package PageObjects;
 
-import net.bytebuddy.implementation.bytecode.ByteCodeAppender;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class SearchPage {
+public class SearchPage extends BasePage{
     private WebDriver driver;
 
     //Elements
@@ -17,7 +16,7 @@ public class SearchPage {
 
 
     public SearchPage(WebDriver _driver) {
-        this.driver = _driver;
+        super(_driver);
     }
 
     public void EnterValidSearchCriteria (String searchCriteria, int expectedResult){
