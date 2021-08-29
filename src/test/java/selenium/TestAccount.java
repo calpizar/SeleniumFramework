@@ -2,15 +2,14 @@ import PageObjects.HeaderPage;
 import PageObjects.LoginPage;
 import PageObjects.RegisterPage;
 import io.qameta.allure.Description;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import sun.rmi.log.LogInputStream;
-
-import java.util.Locale;
+import selenium.BaseClass;
 
 
-public class TestAccount extends BaseClass{
+public class TestAccount extends BaseClass {
 
     @Description("Validate that the login is working with valid credentials")
     @Test (description = "Test Login Success")
@@ -101,6 +100,51 @@ public class TestAccount extends BaseClass{
         registerPage.FillForm(firstName,lastName,email,telephone,password);
 
         Assert.assertEquals(registerPage.GetConfirmationMessage(),expectedMessage);
+    }
+
+    @Description("Trabajo Final Caso de Prueba 1: Validate that duplicate email check validation is performed at Register Page")
+    @Test
+    public void Test_Duplicate_Email_Check(){
+        //Setup
+        String firstName = "Test";
+        String lastName = "User";
+        String email = "juan@piedra.com";
+        String telephone = "999991234";
+        String password = "Test123";
+        String expectedMessage = "Warning: E-Mail Address is already registered!";
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        //Run
+        registerPage.GoTo();
+        registerPage.FillForm(firstName, lastName, email, telephone, password);
+
+        Assert.assertEquals(registerPage.GetDuplicateEmailWarningMessage(), expectedMessage);
+    }
+
+    @Description("Trabajo Final Caso de Prueba 1: Validate that random email is generated as expected at Register Page")
+    @Test
+    public void Test_Create_New_Account_With_Random_Email_Generation(){
+
+        RegisterPage registerPage = new RegisterPage(driver);
+        //Setup
+        String firstName = "Carmen";
+        String lastName = "Test";
+        String email = registerPage().generateRandomEmail();
+        String telephone = "33336677";
+        String password = "test123";
+        String expectedMessage = "Your Account Has Been Created!";
+        String expectedAccountLogoutMessage = "Account Logout";
+
+        //Run
+        registerPage.GoTo();
+        registerPage.FillForm(firstName,lastName,email,telephone,password);
+        //Validate Account Registered
+        Assert.assertEquals(registerPage.GetConfirmationMessage(),expectedMessage);
+        //Validate User is logged in
+        driver.findElement(By.xpath("//*[@id=\"content\"]/div/div/a")).click();
+        driver.findElement(By.xpath("//*[@id=\"column-right\"]/div/a[13]")).click();
+        String AccountLogoutMessage = driver.findElement(By.xpath("//*[@id=\"content\"]/h1")).getText();
+        Assert.assertEquals(AccountLogoutMessage, expectedAccountLogoutMessage, "User has logged out successfully");
     }
 
 }

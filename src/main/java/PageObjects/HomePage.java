@@ -5,11 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/main
     public HomePage(WebDriver _driver){
         super(_driver);
     }
@@ -30,13 +26,10 @@ public class HomePage extends BasePage {
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.clickOnYourStoreButton();
     }
-<<<<<<< HEAD
 
     public void searchFindProductByName (String searchProductCriteria){
         driver.findElement(HomePageLocators.searchBarLocator).sendKeys(searchProductCriteria);
         driver.findElement(HomePageLocators.searchButtonLocator).click();
         driver.findElement(HomePageLocators.FirstH4LocatorXpath).click();
     }
-=======
->>>>>>> origin/main
 }

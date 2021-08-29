@@ -3,24 +3,26 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegisterPage {
-    private WebDriver driver;
+import java.util.Random;
+
+public class RegisterPage extends BasePage {
 
     //Elements
     private By NameLocator = By.name("firstname");
     private By LastNameLocator = By.name("lastname");
-    private By EmailLocator = By.name("email");
+    private By EmailLocator = By.id("input-email");
     private By TelephoneLocator = By.name("telephone");
     private By PasswordLocator = By.name("password");
     private By ConfirmLocator = By.name("confirm");
     private By ConfirmRegisterMessageLocator = By.xpath("//div[@id='content']/h1");
     private By TermsCheckboxLocator = By.name("agree");
     private By ContinueButtonLocator = By.xpath("//*[@id=\"content\"]/form/div/div/input[2]");
+    private By DuplicateEmailWarningMessageLocator = By.xpath("//*[@id=\"account-register\"]/div[1]");
 
 
 
     public RegisterPage(WebDriver _driver){
-        this.driver = _driver;
+        super(_driver);
     }
 
     public void GoTo(){
@@ -39,10 +41,20 @@ public class RegisterPage {
         driver.findElement(TermsCheckboxLocator).click();
         driver.findElement(ContinueButtonLocator).click();
     }
-     public String GetConfirmationMessage(){
+    public String GetConfirmationMessage(){
         return driver.findElement(ConfirmRegisterMessageLocator).getText();
-     }
+    }
 
+    public String GetDuplicateEmailWarningMessage(){
+        return driver.findElement(DuplicateEmailWarningMessageLocator).getText();
+    }
 
+    public String generateRandomEmail(){
+        //driver.findElement(EmailLocator).click();
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(1000);
+        String newRandomEmail = "username" + randomInt + "@idk.com";
+        //driver.findElement(EmailLocator).sendKeys("username" + randomInt + "@idk.com");
+        return newRandomEmail;
+    }
 }
-

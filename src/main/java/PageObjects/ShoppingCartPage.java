@@ -41,12 +41,9 @@ public class ShoppingCartPage extends BasePage {
 
     public String getAlertProductNotAvailable(){
         driver.findElement(CheckoutButtonLocator).click();
-<<<<<<< HEAD
         String alertProductNotAvailableMessage = driver.findElement(alertProductNotAvailableLocator).getText();
         alertProductNotAvailableMessage = alertProductNotAvailableMessage.substring(0,alertProductNotAvailableMessage.length()-2);
         return alertProductNotAvailableMessage;
-=======
-        return driver.findElement(alertProductNotAvailableLocator).getText();
->>>>>>> origin/main
     }
 }
+
