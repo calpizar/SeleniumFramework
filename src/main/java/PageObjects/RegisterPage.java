@@ -50,11 +50,9 @@ public class RegisterPage extends BasePage {
     }
 
     public String generateRandomEmail(){
-        //driver.findElement(EmailLocator).click();
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(1000);
         String newRandomEmail = "username" + randomInt + "@idk.com";
-        //driver.findElement(EmailLocator).sendKeys("username" + randomInt + "@idk.com");
         return newRandomEmail;
     }
 }
