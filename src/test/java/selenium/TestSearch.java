@@ -1,17 +1,12 @@
 package selenium;
 
-import PageObjects.HomePage;
-import PageObjects.ProductPage;
 import PageObjects.SearchPage;
 import PageObjects.SearchResultsPage;
-import dataProviders.ProductsDataProvider;
 import dataProviders.SearchProvider;
-import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pojo.Products;
 import pojo.SearchData;
 
 public class TestSearch extends BaseClass {
@@ -69,51 +64,6 @@ public class TestSearch extends BaseClass {
         else{
             Assert.assertTrue(searchResultsPage.isNoResultsVisible());
             Assert.assertTrue(searchResultsPage().isNoResultsVisible());
-        }
-    }
-    @Description ("Trabajo Final Caso de Prueba 3: Validate product price in different currencies")
-    @Test (dataProvider = "getProductsDataFromJson", dataProviderClass = ProductsDataProvider.class)
-    public void Test_Search_Product_Price_Currencies(Products testData){
-
-        //Search for Product
-        //Go to product page
-        HomePage homePage = new HomePage(driver);
-        homePage().searchFindProductByName(testData.getProduct());
-
-        //select currencies and verify prices
-        ProductPage productPage = new ProductPage(driver);
-
-        productPage().clickCurrencyDropdown();
-        productPage().selectCurrencyOptionEuro();
-        String euro = productPage.getPrice();
-        euro = euro.substring(0,euro.length()-2);
-        if(euro.equals(testData.getEuroPrice())) {
-            Assert.assertEquals(euro, testData.getEuroPrice(), "Euro price matches");
-        }
-        else{
-            System.out.println("Euro price doesn't match");
-        }
-
-        productPage().clickCurrencyDropdown();
-        productPage().selectCurrencyOptionPound();
-        String pound = productPage.getPrice();
-        pound = pound.substring(1,pound.length()-1);
-        if(euro.equals(testData.getPoundPrice())) {
-            Assert.assertEquals(pound, testData.getPoundPrice(), "Pound price matches");
-        }
-        else{
-            System.out.println("Pound price doesn't match");
-        }
-
-        productPage().clickCurrencyDropdown();
-        productPage().selectCurrencyOptionDollar();
-        String dollar = productPage.getPrice();
-        dollar = dollar.substring(1, dollar.length()-1);
-        if(euro.equals(testData.getDollarPrice())) {
-            Assert.assertEquals(dollar, testData.getDollarPrice(), "Dollar price matches");
-        }
-        else{
-            System.out.println("Dollar price doesn't match");
         }
     }
 }

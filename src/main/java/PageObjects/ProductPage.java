@@ -10,11 +10,14 @@ public class ProductPage extends BasePage {
     public By ProductQuantityInputSelector = By.id("input-quantity");
     public By AddButtonSelector = By.id("button-cart");
     public By AlertSuccess = By.cssSelector(".alert-success");
+<<<<<<< HEAD
     public By CurrencyDropdownLocator = By.xpath("//*[@id=\"form-currency\"]/div");
     public By CurrencyDropdownLocatorDollar = By.xpath("//*[@id=\"form-currency\"]/div/ul/li[1]/button");
     public By CurrencyDropdownLocatorPound = By.xpath("//*[@id=\"form-currency\"]/div/ul/li[2]/button");
     public By CurrencyDropdownLocatorEuro = By.xpath("//*[@id=\"form-currency\"]/div/ul/li[3]/button");
     private By priceLocator = By.xpath("//*[@id=\"content\"]/div/div[2]/ul[2]/li[1]/h2");
+=======
+>>>>>>> origin/main
 
     public ProductPage(WebDriver _driver){
         super(_driver);
@@ -37,6 +40,7 @@ public class ProductPage extends BasePage {
         return driver.findElement(AlertSuccess).isDisplayed();
     }
 
+<<<<<<< HEAD
     public void clickCurrencyDropdown(){
         driver.findElement(CurrencyDropdownLocator).click();
     }
@@ -57,4 +61,6 @@ public class ProductPage extends BasePage {
     public String getPrice(){
         return  driver.findElement(priceLocator).getText();
     }
+=======
+>>>>>>> origin/main
 }
